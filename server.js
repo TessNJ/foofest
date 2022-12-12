@@ -6,10 +6,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS"); //OPTIONS
   next();
 });
@@ -50,14 +47,9 @@ app.post("/settings", function (req, res) {
     FooFest.setReservationDuration(structure.reservationDuration);
   }
 
-  if (
-    !structure.eventFrequency &&
-    !structure.eventChance &&
-    !structure.reservationDuration
-  ) {
+  if (!structure.eventFrequency && !structure.eventChance && !structure.reservationDuration) {
     res.send({
-      error:
-        "Wrong data format supplied, need 'eventFrequency', 'reservationDuration', or 'eventChance'",
+      error: "Wrong data format supplied, need 'eventFrequency', 'reservationDuration', or 'eventChance'",
       status: 500,
     });
   } else {
